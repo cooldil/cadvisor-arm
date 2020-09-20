@@ -1,9 +1,9 @@
 # Builder
-FROM arm32v7/golang as builder
+FROM arm64v8/golang as builder
 
 MAINTAINER Ondřej Záruba <info@zaruba-ondrej.cz> (https://zaruba-ondrej.cz)
 
-ENV CADVISOR_VERSION "v0.30.2"
+ENV CADVISOR_VERSION "v0.36.0"
 
 RUN apt-get update && apt-get install -y git dmsetup && apt-get clean
 
@@ -14,7 +14,7 @@ WORKDIR /go/src/github.com/google/cadvisor
 RUN make build
 
 # Image for usage
-FROM arm32v7/debian
+FROM arm64v8/debian
 
 MAINTAINER Ondřej Záruba <info@zaruba-ondrej.cz> (https://zaruba-ondrej.cz)
 
